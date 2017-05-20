@@ -1,0 +1,13 @@
+h2, #addDeviceButton {
+margin-top: 10px;
+color: red
+}
+
+.deviceJS {
+    vertical-align: middle;  
+}
+
+.tokenLine{
+    margin-top: 10px;
+}
+
