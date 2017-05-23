@@ -6,6 +6,7 @@ import register from './register';
 import about from './about';
 import contact from './contact';
 import account from './account';
+import components from './components';
 
 const routes = {
     '/login': login,
@@ -18,3 +19,7 @@ const routes = {
 
 const router = new Router (routes);
 router.init('#/');
+
+
+components.navbar();
+

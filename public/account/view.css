@@ -1,10 +1,10 @@
-h2, #addDeviceButton {
-margin-top: 10px;
+h2 {
+    font-size: 1.5em;
+    margin-top: 10px;
 }
 
 #addDeviceButton {
     color: red;
-
 }
 
 .deviceJS {
@@ -13,5 +13,9 @@ margin-top: 10px;
 
 .tokenLine{
     margin-top: 10px;
+}
+
+#deviceTokenJS{
+    word-wrap: break-word;
 }
 
