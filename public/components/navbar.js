@@ -1,7 +1,7 @@
 import system from '~/system'
 
 export default function () {
-    //dump this into a components folder in same level as public, navbar.js
+ 
     $(document).on('click','.navbar-collapse.in',function(e) {
         if( $(e.target).is('a') ) {
             $(this).collapse('hide');
@@ -9,9 +9,18 @@ export default function () {
     });
 
     let user = system.identity();
+
     let userArray=Object.values(user);
-    if(userArray.length > 0){
-         $('#navbar').append('<li><a id="logout" role="button">Logout</a></li>');
+
+    if(system.authorization(user)){
+        $('#login-li').replaceWith('<li id="logout-li"><a href="#login" id="logout" role="button">Logout</a></li>');
+    }
+    if(!(system.authorization(user))){
+        $('#logout-li').replaceWith('<li id="login-li"><a id="login" href="#login">Login</a></li>');
     };
+
+    $('#logout').click(function(e){
+        window.localStorage.removeItem(process.env.TOKEN);
+    });
 }
 

@@ -44,7 +44,7 @@ export function POST (url, data) {
     });
 }
 
-export function DELETE () {
+export function DELETE (url) {
     return new Promise (function(resolve, reject){
         Request('get',url)
             .query(query || {})
