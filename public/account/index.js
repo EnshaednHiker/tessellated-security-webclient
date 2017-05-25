@@ -25,9 +25,8 @@ export default function () {
         })
         //then append accurate up to the minute user info
         .then((res)=>{
-            let user = system.security.decrypt(res.body.user.token);
-            $('.username').append(`${user.username}`);
-            $('.email').append(`${user.email}`);
+            $('.username').append(`${res.body.user.username}`);
+            $('.email').append(`${res.body.user.email}`);
         });
     system.API.GET(`/user/${user.id}/tessel`)
         //reload page if we can't do get request for devices
@@ -54,15 +53,37 @@ export default function () {
                 $('#deviceWell').html(device.buildDevicesHTML(res.body.user.devices));
                 $('#deviceWell').addClass("well well-sm");
                 this.reset();
+                
             });
     });
-    
-    $('a.deleteDeviceJS').click(function(){
+
+   $('body').on('click', '.delete-button-js', () => {
         console.log(this);
-        //let device = system.security.decrypt(this);
-        
-        //system.API.DELETE(`/user/${user.id}/tessel/:tesselID`)
-        
+        let deviceClass  = $(this).attr();
+        console.log("deviceClass: ",deviceClass);
+        let deviceId = $(`span.device-id-js.${deviceClass}`).text();
+        console.log("deviceId: ",deviceId);
+        // system.API.DELETE(`/user/${user.id}/tessel/${deviceId}`)
+        //     .catch((err)=>{
+        //         console.warn(err.response.text);
+        //     })
+        //     .then((res)=>{
+        //         console.log(res)
+        //     }); 
+    });
+     
+    $('body').on('click', '#delete-user-btn', () =>{
+        event.preventDefault();
+        system.API.DELETE(`/user/${user.id}`)
+            .catch((err)=>{
+                console.warn(err.response.text);
+            })
+            .then((res)=>{
+                console.log(res);
+                window.location.hash='#/login';
+            }); 
 
     });
+
+
 };
