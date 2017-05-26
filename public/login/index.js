@@ -38,6 +38,7 @@ export default function () {
                 window.localStorage.setItem(process.env.TOKEN, res.body.user.token);
                 //redirect to meaningful page
                 window.location.hash='#/account';
+                window.location.reload();
             })
     });
 }
