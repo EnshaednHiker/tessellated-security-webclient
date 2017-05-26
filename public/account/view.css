@@ -19,8 +19,19 @@ h2 {
     word-wrap: break-word;
 }
 
-.glyphicon-pencil{
+.glyphicon-pencil, .glyphicon-remove{
     color: red;
-    
+
+}
+.glyphicon-ok{
+    color: green;
+}
+
+#email-form{
+    margin-top: 15px;
+}
+
+#deviceWell{
+    margin-top: 15px;
 }
 

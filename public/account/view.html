@@ -4,18 +4,14 @@
         <h1>Account - <span id="usernameTitleJS" class="username"></span></h1>
     </div>
     <div class="row">
-        <h2 class="col-md-6 col-sm-12 col-xs-12 text-left">Username: <span class="username"></span></h2>
+        <div class="col col-md-6 col-sm-12 col-xs-12">
+            <h2 class="text-left">Username: <span class="username"></span></h2>
+        </div>
     </div>
     <div class="row">
-        <h2 class="col-md-6 col-sm-12 col-xs-12 text-left">Email: 
-            <form class="form-inline hidden" id="email-form">
-                <div class="form-group">
-                    <label for="email">Name</label>
-                    <input name="email" type="email" class="form-control" id="email-input" placeholder="user@email.com">
-                </div>
-                <button type="submit" class="btn btn-default"></button>
-            </form>
-            <span class="email"></span> <a role="button" id="edit-email-btn" class="btn btn-xs btn-default"><span id="glypichicon-email-btn-js" class="glyphicon glyphicon-pencil"></span></a></h2>
+        <div class="col col-md-4 col-sm-4 col-xs-11">
+            <h2 class="text-left">Email: <span id="email-replace-js"><span class="email"></span> <a role="button" id="edit-email-btn" class="btn btn-xs btn-default inline"><span id="glyphicon-email-btn-js" class="glyphicon glyphicon-pencil"></span></a></span></h2>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-2 col-xs-4 col-md-6 col-lg-6">

@@ -12,7 +12,7 @@ export default function () {
     if(userArray.length===0 || !(system.authorization(user)) ){
          window.location.hash='#/login';
     };
-    
+    let userEmail;
     $('#wrapper').html(view);
     //GET request for user
     system.API.GET(`/user/${user.id}`)
@@ -23,6 +23,7 @@ export default function () {
         })
         //then append accurate up to the minute user info
         .then((res)=>{
+            userEmail = res.body.user.email;
             $('.username').append(`${res.body.user.username}`);
             $('.email').append(`${res.body.user.email}`);
         });
@@ -77,12 +78,37 @@ export default function () {
             })
             .then((res)=>{
                 window.localStorage.removeItem(process.env.TOKEN);
-                console.log(res);
                 window.location.hash='#/login';
                 window.location.reload();
             }); 
 
     });
+    $('body').on('click','#edit-email-btn', ()=>{
+        $('#email-replace-js').html(
+            "<form class='form-inline' id='email-form'>" +
+                "<input name='email' type='email' class='form-control' id='email-input' placeholder='user@email.com'>" +
+                "<button id='email-confirm' type='submit' class='btn btn-default'><span class='glyphicon glyphicon-ok'></span></button>" +
+                "<button id='email-cancel' type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span></button>" +
+            "</form>");
+    });
+
+    $('body').on('click','#email-cancel', ()=>{
+        $('#email-replace-js').html(`<span class='email'>${userEmail}</span> <a role='button' id='edit-email-btn' class='btn btn-xs btn-default inline'><span id='glyphicon-email-btn-js' class='glyphicon glyphicon-pencil'></span></a>`);
+    });
+
+    $('body').on('submit','#email-form', (event)=>{
+        event.preventDefault();
+        let newEmailArray = $('#email-input').serializeArray();
+        let payload = {"user": {"email":newEmailArray[0].value}};
+        system.API.PUT(`/user/${user.id}`,payload)
+            .catch((err)=>{
+                console.warn(err);
+            })
+            .then((res)=>{
+                window.location.reload();
+            }); 
+    });
+    
 
 
 };
