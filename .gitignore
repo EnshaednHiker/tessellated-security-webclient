@@ -38,3 +38,6 @@ jspm_packages
 
 #.env files
 .env
+
+# dummy database data for double checking things
+data.json

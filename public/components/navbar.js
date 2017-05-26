@@ -41,6 +41,7 @@ export default function () {
 
     $('#logout').click(function(e){
         window.localStorage.removeItem(process.env.TOKEN);
+        window.location.hash='#/login';
         window.location.reload();
     });
 }

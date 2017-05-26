@@ -44,9 +44,9 @@ export function POST (url, data) {
     });
 }
 
-export function DELETE (url) {
+export function DELETE (url, query) {
     return new Promise (function(resolve, reject){
-        Request('get',url)
+        Request('delete',url)
             .query(query || {})
             .end(function(err,res){
                 if (err){reject(err)}

@@ -8,13 +8,11 @@ export default function () {
     
     let user = system.identity();
     let userArray=Object.values(user);
-    if(userArray.length===0){
+    //system.authorization(user) returns true if the decoded token has not expired
+    if(userArray.length===0 || !(system.authorization(user)) ){
          window.location.hash='#/login';
     };
-    //system.authorization(user) returns true if the decoded token has not expired
-    if(!(system.authorization(user))){
-        window.location.hash='#/login';
-    };
+    
     $('#wrapper').html(view);
     //GET request for user
     system.API.GET(`/user/${user.id}`)
@@ -57,30 +55,31 @@ export default function () {
             });
     });
 
-   $('body').on('click', '.delete-button-js', () => {
-        console.log(this);
-        let deviceClass  = $(this).attr();
-        console.log("deviceClass: ",deviceClass);
+   $('body').on('click', '.delete-button-js', (event) => {
+        let deviceClasses  = $(event.target).prop("classList");
+        let deviceClass = deviceClasses[4];
         let deviceId = $(`span.device-id-js.${deviceClass}`).text();
         console.log("deviceId: ",deviceId);
-        // system.API.DELETE(`/user/${user.id}/tessel/${deviceId}`)
-        //     .catch((err)=>{
-        //         console.warn(err.response.text);
-        //     })
-        //     .then((res)=>{
-        //         console.log(res)
-        //     }); 
+        system.API.DELETE(`/user/${user.id}/tessel/${deviceId}`)
+            .catch((err)=>{
+                console.warn(err);
+            })
+            .then((res)=>{
+                console.log(res)
+                window.location.reload();
+            }); 
     });
      
     $('body').on('click', '#delete-user-btn', () =>{
-        event.preventDefault();
         system.API.DELETE(`/user/${user.id}`)
             .catch((err)=>{
-                console.warn(err.response.text);
+                console.warn(err);
             })
             .then((res)=>{
+                window.localStorage.removeItem(process.env.TOKEN);
                 console.log(res);
                 window.location.hash='#/login';
+                window.location.reload();
             }); 
 
     });
