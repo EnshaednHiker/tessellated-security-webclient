@@ -1,8 +1,13 @@
 import view from './view.html'
 import css from './view.css'
 import system from '~/system'
+import postal from 'postal'
+
+
 
 export default function () {
+    let channel = postal.channel('authentication');
+
     $('#wrapper').html(view);
     let user = system.identity();
     let userArray=Object.values(user);
@@ -12,7 +17,6 @@ export default function () {
     };
     $('#loginForm').submit(function(event){
         event.preventDefault();
-        console.log($(this).serializeArray());
         let formArray = $(this).serializeArray();
         //build jquery to build form object, include validation of fields
         let payload = system.security.encrypt(
@@ -27,18 +31,19 @@ export default function () {
         system.API.POST('/users/login',{"payload":payload})
             .catch((err)=>{
                 if(err){
-                    console.log("err: ",err);
-                    $("#errorSpan").append("Incorrect login, please enter the correct credentials");
+                    if($("#errorSpan").text().length === 0){
+                        $("#errorSpan").append("Incorrect login, please enter the correct credentials");
+                    }
                 }
             })
             .then( (res)=>{
-                
-                console.log("res: ",res);
                 //save the token to local storage
                 window.localStorage.setItem(process.env.TOKEN, res.body.user.token);
+                //publish to event listener so the login condition is made known to the subscriber
+                channel.publish('login.successful');
                 //redirect to meaningful page
                 window.location.hash='#/account';
-                window.location.reload();
+                
             })
     });
 }

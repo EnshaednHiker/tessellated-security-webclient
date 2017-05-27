@@ -2,10 +2,11 @@ import view from './view.html'
 import * as device from './device.js'
 import css from './view.css'
 import system from '~/system'
+import postal from 'postal'
 
 export default function () {
+    let channel = postal.channel('authentication');
     //create system.authorization to decrypt token and check exp and int.
-    
     let user = system.identity();
     let userArray=Object.values(user);
     //system.authorization(user) returns true if the decoded token has not expired
@@ -46,13 +47,12 @@ export default function () {
         let payload = {"deviceName": deviceNameArray[0].value};
         system.API.POST(`/user/${user.id}/tessel`, payload)
             .catch((err)=>{
-                console.warn(err.response.text);
+                console.warn(err);
             })
             .then((res)=>{
                 $('#deviceWell').html(device.buildDevicesHTML(res.body.user.devices));
                 $('#deviceWell').addClass("well well-sm");
-                this.reset();
-                
+                this.reset();   
             });
     });
 
@@ -60,14 +60,26 @@ export default function () {
         let deviceClasses  = $(event.target).prop("classList");
         let deviceClass = deviceClasses[4];
         let deviceId = $(`span.device-id-js.${deviceClass}`).text();
-        console.log("deviceId: ",deviceId);
+        
         system.API.DELETE(`/user/${user.id}/tessel/${deviceId}`)
             .catch((err)=>{
                 console.warn(err);
             })
             .then((res)=>{
-                console.log(res)
-                window.location.reload();
+                
+                system.API.GET(`/user/${user.id}/tessel`)
+                    //reload page if we can't do get request for devices
+                    .catch((err)=>{
+                        console.warn(err);
+                        window.location.reload();
+                    })
+                    //then append devices
+                    .then( (res) => {
+                        $('#deviceWell').html(device.buildDevicesHTML(res.body.devices));
+                        if(res.body.devices.length > 0){
+                            $('#deviceWell').removeClass("well well-md");
+                        } 
+                    });
             }); 
     });
      
@@ -78,8 +90,8 @@ export default function () {
             })
             .then((res)=>{
                 window.localStorage.removeItem(process.env.TOKEN);
+                channel.publish('logout.successful');
                 window.location.hash='#/login';
-                window.location.reload();
             }); 
 
     });
@@ -105,10 +117,19 @@ export default function () {
                 console.warn(err);
             })
             .then((res)=>{
-                window.location.reload();
+                system.API.GET(`/user/${user.id}`)
+                    //reload page if we can't do get request for the user
+                    .catch((err)=>{
+                        console.warn(err);
+                        window.location.reload();
+                    })
+                    //then append accurate up to the minute user info
+                    .then((res)=>{
+                        userEmail = res.body.user.email;
+                        $('.username').html(`${res.body.user.username}`);
+                        $('.email').html(`${res.body.user.email}`);
+                        $( "#email-cancel" ).trigger( "click" );
+                    });
             }); 
     });
-    
-
-
 };

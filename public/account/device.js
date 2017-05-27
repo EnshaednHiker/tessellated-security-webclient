@@ -1,15 +1,15 @@
 
 export function buildDevicesHTML (devices) {
-    let devicesMarkup;
+    let devicesMarkup="";
     devices.forEach(function(device, index) {
-        devicesMarkup += injectDeviceInfo(device, index);
+        let test = injectDeviceInfo(device, index);
+        devicesMarkup += test;
     });
     return devicesMarkup
 }
 export function injectDeviceInfo (device, index) {
 
-    
- let deviceMarkup = "<div class='row device'>" +
+let deviceMarkup = "<div class='row device'>" +
                         "<div class='col col-sm-6 col-md-6 col-xs-6'>" +
                             `<p class='text-left'><span class='deviceNameJS'>${index + 1}. Device name: ${device.deviceName}</span></p>` +
                         "</div>" +

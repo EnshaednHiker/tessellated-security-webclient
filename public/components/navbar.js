@@ -8,6 +8,7 @@ export default function () {
             $(this).collapse('hide');
         }
     });
+    
     $(document).click(function (event) {
         let clickover = $(event.target);
         let $navbar = $(".navbar-collapse");               
@@ -17,32 +18,37 @@ export default function () {
         }
     });
 
-    let user = system.identity();
-    let access = system.authorization(user);
+    let channel = postal.channel('authentication');
 
-    let channel = postal.channel();
+    channel.subscribe('login.successful',loggedInDOM).constraint(isLoggedIn);
+    
 
-    let navBarAuthorized = channel.subscribe('navbar.authorized',function(){
-            $('#login-li').replaceWith('<li id="logout-li"><a href="#login" id="logout" role="button">Logout</a></li>');
-            $('#account-navbar').removeClass('hidden');
-        }).constraint(function(){
-                return access === true;
+    channel.subscribe('logout.successful',loggedOutDOM).constraint(()=>{
+            return !isLoggedIn();
         });
-    channel.publish('navbar.authorized');
-
-    let navBarNotAuthorized = channel.subscribe('navbar.notAuthorized',function(){
-            $('#logout-li').replaceWith('<li id="login-li"><a id="login" href="#login">Login</a></li>');
-            $('#account-navbar').addClass('hidden');
-        }).constraint(function(){
-            return access !== true;
-        });
-    channel.publish('navbar.notAuthorized');
-
+    
+    if(isLoggedIn()){
+        loggedInDOM();
+    }else{
+        loggedOutDOM();
+    }
 
     $('#logout').click(function(e){
         window.localStorage.removeItem(process.env.TOKEN);
+        channel.publish('logout.successful');
         window.location.hash='#/login';
-        window.location.reload();
     });
+
+    function isLoggedIn (){  
+        return system.authorization(system.identity());
+    }
+    function loggedInDOM () {
+        $('#login-li').replaceWith('<li id="logout-li"><a href="#login" id="logout" role="button">Logout</a></li>');
+        $('#account-navbar').removeClass('hidden');
+    }
+    function loggedOutDOM (){
+        $('#logout-li').replaceWith('<li id="login-li"><a id="login" href="#login">Login</a></li>');
+        $('#account-navbar').addClass('hidden');
+    }
 }
 

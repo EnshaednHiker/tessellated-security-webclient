@@ -1,22 +1,16 @@
 import view from './view.html'
 import $ from 'jquery'
 import system from '~/system'
-
+import css from './view.css'
 
 export default function () {
     $('#wrapper').html(view);
    
     $('#registerForm').submit(function(event){
         event.preventDefault();
-        console.log($(this).serializeArray());
+        
         let formArray = $(this).serializeArray();
-        console.log(                {
-                  "user": {
-                    "username": formArray[0].value,
-                    "email": formArray[1].value,
-                    "password": formArray[3].value
-                  }
-                });
+
         //build jquery to build form object, include validation of fields
         let payload = system.security.encrypt(
                 {
@@ -34,9 +28,7 @@ export default function () {
             })
             .then( (res)=>{
                 //save the token to local storage
-                console.log("set item into local storage: ", res.body, process.env.TOKEN);
                 window.localStorage.setItem(process.env.TOKEN, res.body.user.token);
-                //console.log("Checking to see if localStorage was set",window.localStorage.getItem(Object.keys(res.body)[0]));
                 //redirect to meaningful page
                 window.location.hash='#/account';
             })
