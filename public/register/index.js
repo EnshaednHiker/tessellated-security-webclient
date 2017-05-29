@@ -2,9 +2,12 @@ import view from './view.html'
 import $ from 'jquery'
 import system from '~/system'
 import css from './view.css'
+import postal from 'postal'
 
 export default function () {
     $('#wrapper').html(view);
+
+    let channel = postal.channel('authentication');
    
     $('#registerForm').submit(function(event){
         event.preventDefault();
@@ -21,18 +24,70 @@ export default function () {
                   }
                 }
             );
+        
             
         system.API.POST('/users',{"payload":payload})
-            .then( (data)=> {
-                return system.API.POST("/users/login",{payload:payload})
+            .then((res)=>{
+                console.log("data: ", res);
+                console.log("data.body: ", res.body);
+                if(res.status===201){
+                    return system.API.POST("/users/login",{payload:payload})
+                        .then((res)=>{
+                            //save the token to local storage
+                            window.localStorage.setItem(process.env.TOKEN, res.body.user.token);
+                            //publish to event listener so the login condition is made known to the subscriber
+                            channel.publish('login.successful');
+                            //redirect to meaningful page
+                            window.location.hash='#/account';
+                        })
+                        .catch((err)=>{
+                            console.warn(err);
+                        });
+                }
             })
-            .then( (res)=>{
-                //save the token to local storage
-                window.localStorage.setItem(process.env.TOKEN, res.body.user.token);
-                //redirect to meaningful page
-                window.location.hash='#/account';
-            })
+            .catch((error)=>{
+                    console.warn(error);
+                    if (error.response.status===500){
+                        console.log(error.response)
+                        let valError = JSON.parse(error.response.text);
+                        console.log(valError);
+                        validationError(valError,formArray);
+                    }
+            });
     });
+
+    function validationError (error, form) {
+        let errorKeys = Object.keys(error.errors);
+        function hasEmail (element){
+            return element === 'email';
+        }
+        function hasUsername (element){
+            return element === 'username';
+        }
+        console.log(errorKeys);
+        if(errorKeys.find(hasEmail) && errorKeys.find(hasUsername)){
+            $('#username-validation-error').html('That username has already being used in another account. Choose a different username.');
+            $('#email-validation-error').html('That email address is already being used in another account. Choose a different email.');
+            document.getElementById('registerForm').reset();
+            $("#registerPassword").val(form[3].value);
+            $("#registerConfirmPassword").val(form[4].value);
+        }
+        else if (errorKeys.find(hasUsername)){
+            $('#username-validation-error').html('That username has already been chosen. Choose a different username.');
+            document.getElementById('registerForm').reset();
+            $("#registerEmail").val(form[1].value);
+            $("#registerConfirmEmail").val(form[2].value);
+            $("#registerPassword").val(form[3].value);
+            $("#registerConfirmPassword").val(form[4].value);
+        }
+        else {
+            $('#email-validation-error').html('That email address is already being used in another account. Choose a different email.');
+            document.getElementById('registerForm').reset();
+            $("#registerUsername").val(form[0].value);
+            $("#registerPassword").val(form[3].value);
+            $("#registerConfirmPassword").val(form[4].value);
+        }
+    } 
     
     function checkField(stringFieldID1,stringFieldID2,stringMessageID){
         //Store the password field objects into variables ...
