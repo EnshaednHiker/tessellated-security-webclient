@@ -7,7 +7,7 @@ import about from './about';
 import contact from './contact';
 import account from './account';
 import components from './components';
-import css from './styles/index.css'
+import css from './index.css'
 
 const routes = {
     '/login': login,

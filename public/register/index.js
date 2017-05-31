@@ -28,8 +28,7 @@ export default function () {
             
         system.API.POST('/users',{"payload":payload})
             .then((res)=>{
-                console.log("data: ", res);
-                console.log("data.body: ", res.body);
+
                 if(res.status===201){
                     return system.API.POST("/users/login",{payload:payload})
                         .then((res)=>{
@@ -95,7 +94,7 @@ export default function () {
        
         let field2 = document.getElementById(stringFieldID2);
         
-        //Store the Confimation Message Object ...
+        //Store the Confirmation Message Object ...
         let message = document.getElementById(stringMessageID);
         //Set the colors we will be using ...
         let goodColor = "#66cc66";

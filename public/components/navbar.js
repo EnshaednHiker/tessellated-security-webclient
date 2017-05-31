@@ -33,7 +33,7 @@ export default function () {
         loggedOutDOM();
     }
 
-    $('#logout').click(function(e){
+    $('#logout-navbar').click(function(e){
         window.localStorage.removeItem(process.env.TOKEN);
         channel.publish('logout.successful');
         window.location.hash='#/login';
@@ -43,11 +43,11 @@ export default function () {
         return system.authorization(system.identity());
     }
     function loggedInDOM () {
-        $('#login-li').replaceWith('<li id="logout-li"><a href="#login" id="logout" role="button">Logout</a></li>');
+        $('#login-li').replaceWith('<li id="logout-li"><a id="logout-navbar"  role="button">Logout</a></li>');
         $('#account-navbar').removeClass('hidden');
     }
     function loggedOutDOM (){
-        $('#logout-li').replaceWith('<li id="login-li"><a id="login" href="#login">Login</a></li>');
+        $('#logout-li').replaceWith('<li id="login-li"><a id="login-navbar" href="#login">Login</a></li>');
         $('#account-navbar').addClass('hidden');
     }
 }
