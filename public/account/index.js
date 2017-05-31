@@ -117,7 +117,7 @@ export default function () {
                 console.warn(err);
             })
             .then((res)=>{
-                system.API.GET(`user/${user.id}`)
+                system.API.GET(`/user/${user.id}`)
                     //reload page if we can't do get request for the user
                     .catch((err)=>{
                         console.warn(err);
