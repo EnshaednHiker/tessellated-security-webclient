@@ -28,7 +28,7 @@ export default function () {
                 }
             );
             
-        system.API.POST('/users/login',{"payload":payload})
+        system.API.POST('users/login',{"payload":payload})
             .catch((err)=>{
                 if(err){
                     if($("#errorSpan").text().length === 0){

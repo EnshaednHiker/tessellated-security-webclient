@@ -26,11 +26,11 @@ export default function () {
             );
         
             
-        system.API.POST('/users',{"payload":payload})
+        system.API.POST('users',{"payload":payload})
             .then((res)=>{
 
                 if(res.status===201){
-                    return system.API.POST("/users/login",{payload:payload})
+                    return system.API.POST("users/login",{payload:payload})
                         .then((res)=>{
                             //save the token to local storage
                             window.localStorage.setItem(process.env.TOKEN, res.body.user.token);

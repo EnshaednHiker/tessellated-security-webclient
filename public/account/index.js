@@ -16,7 +16,7 @@ export default function () {
     let userEmail;
     $('#wrapper').html(view);
     //GET request for user
-    system.API.GET(`/user/${user.id}`)
+    system.API.GET(`user/${user.id}`)
         //reload page if we can't do get request for the user
         .catch((err)=>{
             console.warn(err);
@@ -28,7 +28,7 @@ export default function () {
             $('.username').append(`${res.body.user.username}`);
             $('.email').append(`${res.body.user.email}`);
         });
-    system.API.GET(`/user/${user.id}/tessel`)
+    system.API.GET(`user/${user.id}/tessel`)
         //reload page if we can't do get request for devices
         .catch((err)=>{
             console.warn(err);
@@ -45,7 +45,7 @@ export default function () {
         event.preventDefault();
         let deviceNameArray = $(this).serializeArray();
         let payload = {"deviceName": deviceNameArray[0].value};
-        system.API.POST(`/user/${user.id}/tessel`, payload)
+        system.API.POST(`user/${user.id}/tessel`, payload)
             .catch((err)=>{
                 console.warn(err);
             })
@@ -61,13 +61,13 @@ export default function () {
         let deviceClass = deviceClasses[4];
         let deviceId = $(`span.device-id-js.${deviceClass}`).text();
         
-        system.API.DELETE(`/user/${user.id}/tessel/${deviceId}`)
+        system.API.DELETE(`user/${user.id}/tessel/${deviceId}`)
             .catch((err)=>{
                 console.warn(err);
             })
             .then((res)=>{
                 
-                system.API.GET(`/user/${user.id}/tessel`)
+                system.API.GET(`user/${user.id}/tessel`)
                     //reload page if we can't do get request for devices
                     .catch((err)=>{
                         console.warn(err);
@@ -84,7 +84,7 @@ export default function () {
     });
      
     $('body').on('click', '#delete-user-btn', () =>{
-        system.API.DELETE(`/user/${user.id}`)
+        system.API.DELETE(`user/${user.id}`)
             .catch((err)=>{
                 console.warn(err);
             })
@@ -112,12 +112,12 @@ export default function () {
         event.preventDefault();
         let newEmailArray = $('#email-input').serializeArray();
         let payload = {"user": {"email":newEmailArray[0].value}};
-        system.API.PUT(`/user/${user.id}`,payload)
+        system.API.PUT(`user/${user.id}`,payload)
             .catch((err)=>{
                 console.warn(err);
             })
             .then((res)=>{
-                system.API.GET(`/user/${user.id}`)
+                system.API.GET(`user/${user.id}`)
                     //reload page if we can't do get request for the user
                     .catch((err)=>{
                         console.warn(err);
