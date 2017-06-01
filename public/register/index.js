@@ -45,11 +45,11 @@ export default function () {
                 }
             })
             .catch((error)=>{
-                    console.warn(error);
+                    console.warn(error.response.text);
                     if (error.response.status===500){
-                        console.log(error.response)
+                        
                         let valError = JSON.parse(error.response.text);
-                        console.log(valError);
+                    
                         validationError(valError,formArray);
                     }
             });
@@ -63,7 +63,7 @@ export default function () {
         function hasUsername (element){
             return element === 'username';
         }
-        console.log(errorKeys);
+       
         if(errorKeys.find(hasEmail) && errorKeys.find(hasUsername)){
             $('#username-validation-error').html('That username has already being used in another account. Choose a different username.');
             $('#email-validation-error').html('That email address is already being used in another account. Choose a different email.');

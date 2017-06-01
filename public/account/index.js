@@ -8,7 +8,7 @@ export default function () {
     let channel = postal.channel('authentication');
     //create system.authorization to decrypt token and check exp and int.
     let user = system.identity();
-    console.log(user);
+    
     let userArray=Object.values(user);
     //system.authorization(user) returns true if the decoded token has not expired
     if(userArray.length===0 || !(system.authorization(user)) ){
