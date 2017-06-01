@@ -8,6 +8,7 @@ export default function () {
     let channel = postal.channel('authentication');
     //create system.authorization to decrypt token and check exp and int.
     let user = system.identity();
+    console.log(user);
     let userArray=Object.values(user);
     //system.authorization(user) returns true if the decoded token has not expired
     if(userArray.length===0 || !(system.authorization(user)) ){
@@ -16,11 +17,10 @@ export default function () {
     let userEmail;
     $('#wrapper').html(view);
     //GET request for user
-    system.API.GET(`user/${user.id}`)
+    system.API.GET(`/user/${user.id}`)
         //reload page if we can't do get request for the user
         .catch((err)=>{
             console.warn(err);
-            window.location.reload();
         })
         //then append accurate up to the minute user info
         .then((res)=>{
@@ -28,11 +28,10 @@ export default function () {
             $('.username').append(`${res.body.user.username}`);
             $('.email').append(`${res.body.user.email}`);
         });
-    system.API.GET(`user/${user.id}/tessel`)
+    system.API.GET(`/user/${user.id}/tessel`)
         //reload page if we can't do get request for devices
         .catch((err)=>{
             console.warn(err);
-            window.location.reload();
         })
         //then append devices
         .then( (res) => {
@@ -67,7 +66,7 @@ export default function () {
             })
             .then((res)=>{
                 
-                system.API.GET(`user/${user.id}/tessel`)
+                system.API.GET(`/user/${user.id}/tessel`)
                     //reload page if we can't do get request for devices
                     .catch((err)=>{
                         console.warn(err);
@@ -112,7 +111,7 @@ export default function () {
         event.preventDefault();
         let newEmailArray = $('#email-input').serializeArray();
         let payload = {"user": {"email":newEmailArray[0].value}};
-        system.API.PUT(`user/${user.id}`,payload)
+        system.API.PUT(`/user/${user.id}`,payload)
             .catch((err)=>{
                 console.warn(err);
             })
