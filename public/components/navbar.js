@@ -43,12 +43,16 @@ export default function () {
         return system.authorization(system.identity());
     }
     function loggedInDOM () {
-        $('#login-li').replaceWith('<li id="logout-li"><a id="logout-navbar"  role="button">Logout</a></li>');
+        $('#login-navbar').addClass('hidden');
+        $('#logout-navbar').removeClass('hidden');
         $('#account-navbar').removeClass('hidden');
+        $('#register-navbar').addClass('hidden');
     }
     function loggedOutDOM (){
-        $('#logout-li').replaceWith('<li id="login-li"><a id="login-navbar" href="#login">Login</a></li>');
+        $('#logout-navbar').addClass('hidden');
+         $('#login-navbar').removeClass('hidden');
         $('#account-navbar').addClass('hidden');
+        $('#register-navbar').removeClass('hidden');
     }
 }
 

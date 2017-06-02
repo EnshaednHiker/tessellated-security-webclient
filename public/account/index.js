@@ -70,12 +70,11 @@ export default function () {
                     //reload page if we can't do get request for devices
                     .catch((err)=>{
                         console.warn(err);
-                        window.location.reload();
                     })
                     //then append devices
                     .then( (res) => {
                         $('#deviceWell').html(device.buildDevicesHTML(res.body.devices));
-                        if(res.body.devices.length > 0){
+                        if(res.body.devices.length === 0){
                             $('#deviceWell').removeClass("well well-md");
                         } 
                     });
@@ -120,7 +119,6 @@ export default function () {
                     //reload page if we can't do get request for the user
                     .catch((err)=>{
                         console.warn(err);
-                        window.location.reload();
                     })
                     //then append accurate up to the minute user info
                     .then((res)=>{
