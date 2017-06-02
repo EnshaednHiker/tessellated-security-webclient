@@ -44,7 +44,7 @@ export default function () {
         event.preventDefault();
         let deviceNameArray = $(this).serializeArray();
         let payload = {"deviceName": deviceNameArray[0].value};
-        system.API.POST(`user/${user.id}/tessel`, payload)
+        system.API.POST(`/user/${user.id}/tessel`, payload)
             .catch((err)=>{
                 console.warn(err);
             })
@@ -60,7 +60,7 @@ export default function () {
         let deviceClass = deviceClasses[4];
         let deviceId = $(`span.device-id-js.${deviceClass}`).text();
         
-        system.API.DELETE(`user/${user.id}/tessel/${deviceId}`)
+        system.API.DELETE(`/user/${user.id}/tessel/${deviceId}`)
             .catch((err)=>{
                 console.warn(err);
             })
@@ -83,7 +83,7 @@ export default function () {
     });
      
     $('body').on('click', '#delete-user-btn', () =>{
-        system.API.DELETE(`user/${user.id}`)
+        system.API.DELETE(`/user/${user.id}`)
             .catch((err)=>{
                 console.warn(err);
             })
