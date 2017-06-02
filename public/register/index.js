@@ -6,6 +6,12 @@ import postal from 'postal'
 
 export default function () {
     $('#wrapper').html(view);
+    let user = system.identity();
+    let userArray=Object.values(user);
+    //system.authorization(user) returns true if the decoded token has not expired
+    if(system.authorization(user)){
+        window.location.hash='#/account';
+    };
 
     let channel = postal.channel('authentication');
    
