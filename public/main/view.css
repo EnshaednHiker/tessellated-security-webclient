@@ -1,6 +1,29 @@
 .main-div{
+    margin-top: 80%;
     max-width: 459px;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
+}
+#errorDiv{
+    margin-bottom: 10px;
+    color: red
+}
+
+.login-div{
+    max-width: 459px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+#background-image {
+    position: absolute;
+    top: 0; 
+    left: 0;   
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+    
 }

@@ -6,6 +6,10 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+.white-text {
+  color: white !important;
+}
 @media only screen and (max-device-width: 414px) {
     img {
         width: 100%;

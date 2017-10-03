@@ -1,8 +1,41 @@
-
+<img src="/assets/images/sleeping-city-sleep-night_large.jpeg" srcset=
+  "/assets/images/sleeping-city-sleep-night_extraSmall.jpeg 400w, 
+  /assets/images/sleeping-city-sleep-night_small.jpeg 700w, 
+  /assets/images/sleeping-city-sleep-night_medium.jpeg 1300w, 
+  /assets/images/sleeping-city-sleep-night_large.jpeg 2000w, 
+  /assets/images/sleeping-city-sleep-night_extraLarge.jpeg 2500w" 
+  class="img-responsive" id="background-image">
 <div class="column main-div">    
     <div class="index-homepage">
       <h1>Tessellated Security</h1>
       <p class="lead">Welcome to Tessellated Security, a service to turn a tessel into a security system. Follow the instructions <a target="_blank" href="https://github.com/EnshaednHiker/tessellated-security">here</a> to build your tessel, then come back here to <a href="#/register">set up an account</a>. If you’ve already created an account, then welcome back! And enjoy your security system.</p>
       <img src="../../assets/tessel2.png" alt="tessel 2 image" id="tessel" >
     </div>
+</div>
+<div class="login-div">    
+  <div class="index-homepage">
+    <h1>Login</h1>
+    <p class="text-left">If you already have an account with Tessellated Security, please enter it below. Otherwise you'll need to register a new account <a href="/#register">here</a>.</p>
+    <form id="loginForm">
+      <div class="form-group text-left">
+        <label for="username">Username</label>
+        <input name="username" type="verbatim" class="form-control" id="loginUsername" placeholder="Username">
+      </div>
+      <div class="form-group text-left">
+        <label for="password">Password</label>
+        <input name="password" type="password" class="form-control" id="loginPassword" placeholder="Password">
+      </div>
+      <div class="row">
+        <div class="col col-md-12 col-sm-12 col-xs-12">
+          <div id="errorDiv">
+            <span id="errorSpan"></span>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-12 col-sm-12 col-xs-12">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
