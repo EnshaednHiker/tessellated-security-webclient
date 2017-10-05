@@ -1,5 +1,4 @@
 .main-div{
-    margin-top: 80%;
     max-width: 459px;
     width: 100%;
     margin-right: auto;
@@ -25,5 +24,49 @@
     min-height: auto;
     width: 100%;
     height: auto;
-    
+    /*allow other elements to display on top of the image*/
+    z-index: -10;
+}
+
+.header-offset-from-top {
+    margin-top: 30vw;
+}
+
+.section-offset-from-top {
+    margin-top: 30vw;
+}
+
+
+.primary-text {
+    color: #df9f4f !important;
+}
+
+.secondary-text {
+    color: #b0682d !important;
+}
+a.primary-text:target {
+    color: white !important;
+} 
+a.primary-text:focus {
+    color: white !important;
+}
+
+
+a.primary-text:hover {
+    color: white !important;
+}
+
+
+
+.pallette-text {
+    color: white;
+    color: #150804;
+    color: #713e14;
+    color: #97a07c;
+    color: #b0682d;
+    color: #df9f4f;
+}
+
+.white-text {
+    color: white !important;
 }

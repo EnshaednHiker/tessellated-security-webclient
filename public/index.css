@@ -11,8 +11,18 @@ body {
   color: white !important;
 }
 @media only screen and (max-device-width: 414px) {
-    img {
+    #tessel {
         width: 100%;
         height: auto
     }
+}
+
+h1 {
+  font-size: 5.9vw;
+}
+h2 {
+  font-size: 3.0vh;
+}
+p {
+  font-size: 2vmin;
 }

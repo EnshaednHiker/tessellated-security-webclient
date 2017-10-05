@@ -1,14 +1,50 @@
 import system from '~/system'
 import postal from 'postal'
+import css from './navbar.css'
 
 export default function () {
 
+    //if any links in the navbar are clicked, the hamburger menu collapses back into hide mode
     $(document).on('click','.navbar-collapse.in',function(e) {
         if( $(e.target).is('a') ) {
             $(this).collapse('hide');
         }
+        
     });
-    
+
+    //this duplicative code reads the page on page load, when at the top, the navbar is rendered transparent
+    if (window.scrollY < 1){
+        $('#outermost-navbar').addClass('navbar-at-top');
+    }
+    else {
+        $('#outermost-navbar').removeClass('navbar-at-top');
+    }
+    //while this block reads the page every time the page scrolls, handles rendering navbar transparency when at top and whether the hamburger button has been clicked
+    $(document).scroll( () => {
+        let boolean = $('#hamburger-button').hasClass('collapsed');
+        if (window.scrollY < 1 && !boolean){
+            $('#outermost-navbar').removeClass('navbar-at-top');
+        }
+        else if (window.scrollY < 1 && boolean) {
+            $('#outermost-navbar').addClass('navbar-at-top');
+        }
+        else {
+            $('#outermost-navbar').removeClass('navbar-at-top');
+        }
+    });
+
+    $(document).on('click','#hamburger-button',function(e) {
+        let boolean = $('#hamburger-button').hasClass('collapsed');
+        if(window.scrollY < 1 && !boolean){
+            $('#outermost-navbar').removeClass('navbar-at-top');
+        }
+        else if (window.scrollY < 1 && boolean ) {
+            $('#outermost-navbar').addClass('navbar-at-top');
+        }
+        
+    });    
+
+
     $(document).click(function (event) {
         let clickover = $(event.target);
         let $navbar = $(".navbar-collapse");               
