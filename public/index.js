@@ -12,7 +12,6 @@ import css from './index.css'
 const routes = {
 
     '/': main,
-    '/register': register,
     '/contact': contact,
     '/about': about,
     '/account': account 

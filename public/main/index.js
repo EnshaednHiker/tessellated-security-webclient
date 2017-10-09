@@ -11,6 +11,15 @@ import register from './register.html';
 export default function () {
     let channel = postal.channel('authentication');
 
+    let anotherChannel = postal.subscribe({
+        channel: 'authentication',
+        topic: 'logout.successful',
+        callback: function () {
+            $('#input-div-row').html(login);
+        }
+    });
+
+
     $('#wrapper').html(view);
     let user = system.identity();
     console.log(user);
@@ -22,7 +31,7 @@ export default function () {
     };
 
     //block handles submitting log in information to server
-    $('#loginForm').submit(function(event){
+    $(document).on('submit','#loginForm', function(event){
         event.preventDefault();
         let formArray = $(this).serializeArray();
         //builds form object, include validation of fields
@@ -55,7 +64,7 @@ export default function () {
     });
 
     //block handles submitting info to server to add a new user account
-    $('#registerForm').submit(function(event){
+    $(document).on('submit','#registerForm', function(event){
         event.preventDefault();
         
         let formArray = $(this).serializeArray();
@@ -170,15 +179,6 @@ export default function () {
         }    
     };
     
-    //listeners for registering input validation
-    // document.getElementById("registerConfirmPassword").addEventListener("keyup", function (){
-    //     checkField('registerPassword','registerConfirmPassword', 'confirmMessagePass')
-    // });
-
-    // document.getElementById("registerConfirmEmail").addEventListener("keyup", function (){
-    //     checkField('registerEmail','registerConfirmEmail', 'confirmMessageEmail')
-    // });
-
     $(document).on('keyup','#registerConfirmPassword', () => {
         checkField('registerPassword','registerConfirmPassword', 'confirmMessagePass');
     });
@@ -189,15 +189,21 @@ export default function () {
 
     //listener to switch to login form from registration
     $(document).on('click','#change-to-login', (e) => {
-        let markup = loginMarkup()
         $('#input-div-row').html(login);
     });
 
     //listener to switch to register from login for
     $(document).on('click','#change-to-register', (e) => {
-        let markup = registerMarkup()
         $('#input-div-row').html(register);
     });
+
+    $(document).on('click','#logout-p-element', function(e){
+        window.localStorage.removeItem(process.env.TOKEN);
+        channel.publish('logout.successful');
+        //$('#input-div-row').html(login);
+        window.location.hash='#';
+    });
+
 }
 
 function loggedInMarkup(username) {
@@ -205,8 +211,9 @@ function loggedInMarkup(username) {
         '<div class="input-div" id="logged-in">' +   
             '<div class="index-homepage">'+
                 '<h2><bold>Already logged in</bold></h2>'+
-                `<p class="text-left">Welcome back, ${username}. `+ 'Visit your <a href="#/account">account</a> or <a>logout</a>.</p>'+
+                `<p class="text-left">Welcome back, ${username}. `+ 'Visit your <a href="#/account">account</a> or <button class="button-link" id="logout-p-element">logout</button>.</p>'+
             '</div>'+
         '</div>';
     return markup
 }
+

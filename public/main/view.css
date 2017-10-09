@@ -78,10 +78,10 @@ a.primary-text:hover {
     border:none; 
     padding:0!important;
     font: inherit;
-    /*border is optional*/
-    text-decoration:underline; 
     cursor: pointer;
+    color: #337AB7;
 }
 .button-link:hover {
-    color: blue;
+    /* color: blue; */
+    text-decoration:underline;
 } 

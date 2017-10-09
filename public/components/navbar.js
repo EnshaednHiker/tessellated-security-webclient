@@ -43,7 +43,7 @@ export default function () {
     });
 
     //this duplicative code reads the page on page load, when at the top, the navbar is rendered transparent
-    if (window.scrollY < 1 && window.location.hash !== '#/account'){
+    if (window.scrollY < 1 && window.location.hash !== '#/account' || window.scrollY < 1 && window.location.hash !== '#account'){
         $('#outermost-navbar').addClass('navbar-at-top');
     }
     else {
@@ -55,7 +55,7 @@ export default function () {
         if (window.scrollY < 1 && !boolean){
             $('#outermost-navbar').removeClass('navbar-at-top');
         }
-        else if (window.scrollY < 1 && window.location.hash === '#/account') {
+        else if (window.scrollY < 1 && window.location.hash === '#/account' || window.scrollY < 1 && window.location.hash === '#account') {
             $('#outermost-navbar').removeClass('navbar-at-top');
         }
         else if (window.scrollY < 1 && boolean) {
@@ -122,13 +122,12 @@ export default function () {
         $('#logout-navbar').removeClass('hidden');
         $('#account-navbar').removeClass('hidden');
         $('#user-account-span').html(user.username);
-        $('#register-navbar').addClass('hidden');
+        
     }
     function loggedOutDOM (){
         $('#logout-navbar').addClass('hidden');
          $('#login-navbar').removeClass('hidden');
         $('#account-navbar').addClass('hidden');
-        $('#register-navbar').removeClass('hidden');
     }
 }
 
