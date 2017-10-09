@@ -15,6 +15,7 @@ export default function () {
 
     let channel = postal.channel('authentication');
    
+    //block handles submitting info to server to add a new user account
     $('#registerForm').submit(function(event){
         event.preventDefault();
         
@@ -61,6 +62,7 @@ export default function () {
             });
     });
 
+    //block handles validation errors to make sure user doesn't mis-enter email or password and that the username hasn't already been taken
     function validationError (error, form) {
         let errorKeys = Object.keys(error.errors);
         function hasEmail (element){

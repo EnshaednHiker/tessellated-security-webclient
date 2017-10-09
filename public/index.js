@@ -10,7 +10,7 @@ import components from './components';
 import css from './index.css'
 
 const routes = {
-    '/login': login,
+
     '/': main,
     '/register': register,
     '/contact': contact,

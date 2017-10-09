@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top " id="outermost-navbar">
+    <nav data-scroll-header class="navbar navbar-inverse navbar-fixed-top " id="outermost-navbar">
       <div class="container">
         <div class="navbar-header">
           <button id="hamburger-button" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -28,11 +28,11 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul id="navbar-ul" class="nav navbar-nav">
-            <li class="active"><a href="#" class="primary-text" id="home">Home</a></li>
-            <li id="login-li"><a id="login-navbar" href="#login" class="primary-text">Login</a></li>
+            <li class="active"><a href="#" data-scroll class="primary-text" id="home">Home</a></li>
+            <li id="login-li"><a  id="login-navbar" href="#login-main" data-scroll class="primary-text">Login</a></li>
             <li><a href="#about" class="primary-text">About</a></li>
             <li><a href="#contact" class="primary-text">Contact</a></li>
-            <li><a id="account-navbar" class="hidden primary-text" href="#account">Account</a></li>
+            <li><a id="account-navbar" class="hidden primary-text" href="#account">Account (<span id="user-account-span"></span>)</a></li>
             <li id="logout-li"><a id="logout-navbar" class="hidden primary-text" role="button">Logout</a></li>
             <li><a id="register-navbar" href="#register" class="primary-text">Register</a></li>
           </ul>
@@ -44,7 +44,7 @@
       </div>  
     </div><!-- /.container -->
     <footer>
-      <p class="text-center">Icons courtesy of <a href="https://glyphicons.com/license/" target="_blank">Glyphicons</a></p>
+      <p class="text-center">Icons courtesy of <a href="https://glyphicons.com/license/" target="_blank">Glyphicons</a></p> 
     </footer>
   </body>
 </html>

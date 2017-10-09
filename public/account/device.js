@@ -15,7 +15,7 @@ let deviceMarkup = "<div class='row device'>" +
                         "</div>" +
                         "<div class='col col-sm-6 col-md-6 col-xs-6'>" +
                             `<button class='btn btn-default btn-danger delete-button-js device-js${index + 1}' type='button'>Delete Device</button>` +
-                            //If I want to be also to rename devices
+                            //If I want to also be able to rename devices
                             /*"<div class='btn-group'>" +
                                 "<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" +
                                     "Actions <span class='caret'></span>" +

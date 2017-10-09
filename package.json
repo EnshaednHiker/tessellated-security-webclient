@@ -7,8 +7,8 @@
     "start": "./node_modules/.bin/webpack-dev-server",
     "build": "webpack -p",
     "deploy": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages",
-    "production-build":"npm run build -- --env=production",
-    "local-build":"npm run build -- --env=local"
+    "production-build": "npm run build -- --env=production",
+    "local-build": "npm run build -- --env=local"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "jquery": "^3.2.1",
     "jsonwebtoken": "^7.4.0",
     "postal": "^2.0.5",
-    "superagent": "^3.5.2"
+    "superagent": "^3.5.2",
+    "sweet-scroll": "^2.2.1"
   }
 }

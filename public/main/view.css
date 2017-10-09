@@ -9,7 +9,7 @@
     color: red
 }
 
-.login-div{
+.input-div{
     max-width: 459px;
     width: 100%;
     margin-right: auto;
@@ -70,3 +70,18 @@ a.primary-text:hover {
 .white-text {
     color: white !important;
 }
+
+
+.button-link {
+    background:none!important;
+    color:inherit;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    /*border is optional*/
+    text-decoration:underline; 
+    cursor: pointer;
+}
+.button-link:hover {
+    color: blue;
+} 
