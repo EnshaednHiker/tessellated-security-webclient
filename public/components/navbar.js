@@ -16,7 +16,7 @@ export default function () {
             verticalScroll: true,           // Enable the vertical scroll
             horizontalScroll: false,        // Enable the horizontal scroll
             stopScroll: true,               // When fired wheel or touchstart events to stop scrolling
-            updateURL: true,               // Update the URL hash on after scroll (true | false | "push" | "replace")
+            updateURL: false,               // Update the URL hash on after scroll (true | false | "push" | "replace")
             preventDefault: true,           // Cancels the container element click event
             stopPropagation: true,          // Prevents further propagation of the container element click event in the bubbling phase
             outputLog: false,               // Specify level of output to log
@@ -90,6 +90,14 @@ export default function () {
     });
 
     let channel = postal.channel('authentication');
+
+    channel.subscribe('changed.to.login', function(){
+        $('#login-navbar').attr('href','#login-main');
+    });
+
+    channel.subscribe('changed.to.register', function(){
+        $('#login-navbar').attr('href','#register-div');
+    });
 
     channel.subscribe('login.successful',loggedInDOM).constraint(isLoggedIn);
     

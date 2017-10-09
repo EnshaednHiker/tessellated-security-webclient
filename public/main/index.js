@@ -189,11 +189,13 @@ export default function () {
 
     //listener to switch to login form from registration
     $(document).on('click','#change-to-login', (e) => {
+        channel.publish('changed.to.login');
         $('#input-div-row').html(login);
     });
 
     //listener to switch to register from login for
     $(document).on('click','#change-to-register', (e) => {
+        channel.publish('changed.to.register');
         $('#input-div-row').html(register);
     });
 
