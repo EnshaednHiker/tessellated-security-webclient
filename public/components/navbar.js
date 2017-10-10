@@ -33,7 +33,7 @@ export default function () {
     document.addEventListener("DOMContentLoaded", () => {
         const sweetScroll = new SweetScroll(scrollOptions);
     }, false);
-    
+
     
     //if any links in the navbar are clicked, the hamburger menu collapses back into hide mode
     $(document).on('click','.navbar-collapse.in',function(e) {
@@ -43,7 +43,7 @@ export default function () {
     });
 
     //this duplicative code reads the page on page load, when at the top, the navbar is rendered transparent
-    if (window.scrollY < 1 && window.location.hash !== '#/account' || window.scrollY < 1 && window.location.hash !== '#account'){
+    if (window.scrollY < 1 && window.location.hash !== '#/account' || window.scrollY < 1 && window.location.hash !== '#account' || window.scrollY < 1 && window.location.hash !== '#/about' || window.scrollY < 1 && window.location.hash !== '#about'){
         $('#outermost-navbar').addClass('navbar-at-top');
     }
     else {
@@ -55,7 +55,7 @@ export default function () {
         if (window.scrollY < 1 && !boolean){
             $('#outermost-navbar').removeClass('navbar-at-top');
         }
-        else if (window.scrollY < 1 && window.location.hash === '#/account' || window.scrollY < 1 && window.location.hash === '#account') {
+        else if (window.scrollY < 1 && window.location.hash === '#/account' || window.scrollY < 1 && window.location.hash === '#account' || window.scrollY < 1 && window.location.hash !== '#/about' || window.scrollY < 1 && window.location.hash !== '#about') {
             $('#outermost-navbar').removeClass('navbar-at-top');
         }
         else if (window.scrollY < 1 && boolean) {

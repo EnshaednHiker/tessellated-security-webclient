@@ -35,6 +35,9 @@
 .section-offset-from-top {
     margin-top: 30vw;
 }
+.section-offset {
+    margin-top: 10vw;
+}
 
 
 .primary-text {
@@ -85,3 +88,11 @@ a.primary-text:hover {
     /* color: blue; */
     text-decoration:underline;
 } 
+
+.media-img-section {
+    min-width: 100%;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}

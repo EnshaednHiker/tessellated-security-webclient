@@ -36,6 +36,7 @@
   "dependencies": {
     "director": "^1.2.8",
     "dotenv-webpack": "^1.4.5",
+    "jq-accordion": "^1.0.3",
     "jquery": "^3.2.1",
     "jsonwebtoken": "^7.4.0",
     "postal": "^2.0.5",
