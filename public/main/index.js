@@ -5,7 +5,14 @@ import system from '~/system';
 import postal from 'postal';
 import login from './login.html';
 
-
+/*
+      <!--srcset=
+        "assets/sleeping-city-sleep-night_extraSmall.jpeg 400w, 
+        assets/sleeping-city-sleep-night_small.jpeg 700w, 
+        assets/sleeping-city-sleep-night_medium.jpeg 1300w, 
+        assets/sleeping-city-sleep-night_large.jpeg 2000w, 
+        assets/sleeping-city-sleep-night_extraLarge.jpeg 2500w"  -->
+*/
 
 
 export default function () {
