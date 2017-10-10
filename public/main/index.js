@@ -6,7 +6,7 @@ import system from '~/system';
 import postal from 'postal';
 import login from './login.html';
 import register from './register.html';
-import accordion from '~/public/components/jquery.accordion.js';
+
 
 
 export default function () {
@@ -206,12 +206,6 @@ export default function () {
         //$('#input-div-row').html(login);
         window.location.hash='#';
     });
-
-    //handles accordion FAQ content behavior
-    // $('.accordion').accordion({
-    //     "transitionSpeed": 400
-    // });
-
 }
 
 function loggedInMarkup(username) {
