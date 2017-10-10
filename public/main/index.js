@@ -1,11 +1,10 @@
-import tesselImg from '~/assets/tessel2.png'; 
 import view from './view.html';
 import css from './view.css';
 import $ from 'jquery';
 import system from '~/system';
 import postal from 'postal';
 import login from './login.html';
-import register from './register.html';
+
 
 
 
@@ -197,7 +196,8 @@ export default function () {
     //listener to switch to register from login for
     $(document).on('click','#change-to-register', (e) => {
         channel.publish('changed.to.register');
-        $('#input-div-row').html(register);
+        let markup = registerMarkup();
+        $('#input-div-row').html(markup);
     });
 
     $(document).on('click','#logout-p-element', function(e){
@@ -219,3 +219,41 @@ function loggedInMarkup(username) {
     return markup
 }
 
+function registerMarkup () {
+    let markup = 
+    "<div class='input-div' id='register-div'>"+    
+    "<div class='index-homepage'>"+
+      "<h2><bold>Register</bold></h2>"+
+      "<p class='text-left'>Already have an account? Click <button class='button-link' id='change-to-login'>here</button> to log in. Otherwise, fill out the form to create an account.</p>"+
+      "<form id='registerForm' action method='post'>"+
+        "<div class='form-group text-left'>"+
+          "<label for='username'>Username</label>"+
+          "<input name='username' required type='verbatim' class='form-control' id='registerUsername' placeholder='Username'>"+
+          "<span id='username-validation-error'></span>"+
+        "</div>"+
+        "<div class='form-group text-left'>"+
+          "<label for='email'>Email</label>"+
+          "<input required name='email' type='email' class='form-control' id='registerEmail' placeholder='Email'>"+
+          "<span id='email-validation-error'></span>"+
+        "</div>"+
+        "<div class='form-group text-left'>"+
+          "<label for='confirmEmail'>Confirm Email</label>"+
+          "<input title='The Confirm Email field must be the same as the 'Email' field.' required name='confirmEmail' type='email' class='form-control' id='registerConfirmEmail' placeholder='Confirm Email'>"+
+          "<span id='confirmMessageEmail' class='confirmMessage'></span>"+
+        "</div>"+
+        "<div class='form-group text-left'>"+
+          "<label for='password'>Password</label>"+
+          "<input required  name='password' type='password' class='form-control' id='registerPassword' placeholder='Password' >"+
+        "</div>"+
+        "<div class='form-group text-left'>"+
+          "<label for='confirmPassword'>Confirm Password</label>"+
+          "<input required title='The 'Confirm Password' field must be the same as the 'Password' field.' type='password' name='confirmPassword' class='form-control' id='registerConfirmPassword' placeholder='Confirm Password'>"+
+          "<span id='confirmMessagePass' class='confirmMessage'></span>"+
+        "</div>"+
+        "<button id='submitButton' type='submit' class='btn btn-default'>Submit</button>"+
+      "</form>"+
+    "</div>"+
+"</div>"
+
+return markup
+}
