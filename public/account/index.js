@@ -5,7 +5,6 @@ import system from '~/system'
 import postal from 'postal'
 
 export default function () {
-    
 
     let channel = postal.channel('authentication');
     //create system.authorization to decrypt token and check exp and int.

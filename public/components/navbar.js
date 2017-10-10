@@ -34,6 +34,35 @@ export default function () {
         const sweetScroll = new SweetScroll(scrollOptions);
     }, false);
 
+    $(window).on("hashchange", () => {
+        if (window.scrollY < 1 && window.location.hash === '#/' || window.scrollY < 1 && window.location.hash === ''){
+            $('#outermost-navbar').addClass('navbar-at-top');
+        }
+        else {
+            $('#outermost-navbar').removeClass('navbar-at-top');
+        }
+
+        if(window.location.hash==='#account'){
+            $('#login-navbar').addClass('hidden');
+            $('#video-navbar').addClass('hidden');
+        }
+        else if (window.location.hash==='#/account') {
+            $('#login-navbar').addClass('hidden');
+            $('#video-navbar').addClass('hidden');
+        }
+        else if (window.location.hash==='#about') {
+            $('#login-navbar').addClass('hidden');
+            $('#video-navbar').addClass('hidden');
+        }
+        else if (window.location.hash==='#/about') {
+            $('#login-navbar').addClass('hidden');
+            $('#video-navbar').addClass('hidden');
+        }
+        else {
+            $('#login-navbar').removeClass('hidden');
+            $('#video-navbar').removeClass('hidden');
+        }
+    });
     
     //if any links in the navbar are clicked, the hamburger menu collapses back into hide mode
     $(document).on('click','.navbar-collapse.in',function(e) {
@@ -43,7 +72,7 @@ export default function () {
     });
 
     //this duplicative code reads the page on page load, when at the top, the navbar is rendered transparent
-    if (window.scrollY < 1 && window.location.hash !== '#/account' || window.scrollY < 1 && window.location.hash !== '#account' || window.scrollY < 1 && window.location.hash !== '#/about' || window.scrollY < 1 && window.location.hash !== '#about'){
+    if (window.scrollY < 1 && window.location.hash === '#/' || window.scrollY < 1 && window.location.hash === ''){
         $('#outermost-navbar').addClass('navbar-at-top');
     }
     else {
@@ -52,13 +81,11 @@ export default function () {
     //while this block reads the page every time the page scrolls, handles rendering navbar transparency when at top and whether the hamburger button has been clicked
     $(document).scroll( () => {
         let boolean = $('#hamburger-button').hasClass('collapsed');
+
         if (window.scrollY < 1 && !boolean){
             $('#outermost-navbar').removeClass('navbar-at-top');
         }
-        else if (window.scrollY < 1 && window.location.hash === '#/account' || window.scrollY < 1 && window.location.hash === '#account' || window.scrollY < 1 && window.location.hash !== '#/about' || window.scrollY < 1 && window.location.hash !== '#about') {
-            $('#outermost-navbar').removeClass('navbar-at-top');
-        }
-        else if (window.scrollY < 1 && boolean) {
+        else if (window.scrollY < 1 && boolean && window.location.hash === '#/' || window.scrollY < 1 && boolean && window.location.hash === '') {
             $('#outermost-navbar').addClass('navbar-at-top');
         }
         else {
@@ -70,7 +97,11 @@ export default function () {
 
     $(document).on('click','#hamburger-button',function(e) {
         let boolean = $('#hamburger-button').hasClass('collapsed');
-        if(window.scrollY < 1 && !boolean){
+
+        if (window.location.hash !=="#/" || window.location.hash!=="") {
+            $('#outermost-navbar').removeClass('navbar-at-top');
+        }
+        else if(window.scrollY < 1 && !boolean){
             $('#outermost-navbar').removeClass('navbar-at-top');
         }
         else if (window.scrollY < 1 && boolean ) {
@@ -126,7 +157,7 @@ export default function () {
     }
     function loggedInDOM () {
         let user = system.identity();
-        $('#login-navbar').addClass('hidden');
+        //$('#login-navbar').addClass('hidden');
         $('#logout-navbar').removeClass('hidden');
         $('#account-navbar').removeClass('hidden');
         $('#user-account-span').html(user.username);
@@ -134,7 +165,7 @@ export default function () {
     }
     function loggedOutDOM (){
         $('#logout-navbar').addClass('hidden');
-         $('#login-navbar').removeClass('hidden');
+        //$('#login-navbar').removeClass('hidden');
         $('#account-navbar').addClass('hidden');
     }
 }

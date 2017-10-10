@@ -11,8 +11,6 @@ import accordion from '~/public/components/jquery.accordion.js';
 
 export default function () {
 
-    
-
     let channel = postal.channel('authentication');
 
     let anotherChannel = postal.subscribe({
@@ -26,7 +24,6 @@ export default function () {
 
     $('#wrapper').html(view);
     let user = system.identity();
-    console.log(user);
     let userArray=Object.values(user);
     //system.authorization(user) returns true if the decoded token has not expired
     if(system.authorization(user)){
@@ -220,13 +217,7 @@ export default function () {
 function loggedInMarkup(username) {
     let markup = 
         '<div class="input-div" id="logged-in">' + 
-            '<section class="section-offset">' +
-                '<p class="lead text-left margin">4. login or register an account</p>'+
-            '</section>'+
-            '<section class="">'+
-                '<p class="lead text-left margin">5. confused? learn more <a target="_blank" href="https://github.com/EnshaednHiker/tessellated-security">here</a></p>'+
-            '</section>'  + 
-            '<div class="index-homepage">'+
+            '<div id="login-main" class="index-homepage">'+
                 '<h2><bold>Already logged in</bold></h2>'+
                 `<p class="text-left">Welcome back, ${username}. `+ 'Visit your <a href="#/account">account</a> or <button class="button-link" id="logout-p-element">logout</button>.</p>'+
             '</div>'+
