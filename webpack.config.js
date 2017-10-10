@@ -28,7 +28,7 @@ module.exports = function (environment) {
             rules: [
               { test: /\.(js|jsx)$/, loader: 'babel-loader', exclude: /node_modules/ },
               { test: /\.css$/, loader: 'style-loader!css-loader' },
-              { test: /\.(png|jpg)$/, loader: 'file-loader', options:{name: 'assets/[name].[ext]'}},
+              { test: /\.(png|jpg|jpeg)$/, loader: 'file-loader', options:{name: 'assets/[name].[ext]'}},
               { test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
               { test: /\.(eot|ttf|svg)$/, loader: 'file-loader'},
               { test: /\.(html)$/, loader: 'html-loader'}
