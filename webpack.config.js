@@ -31,7 +31,7 @@ module.exports = function (environment) {
               { test: /\.(png|jpe?g)$/, loader: 'file-loader', options:{name: 'assets/[name].[ext]'}},
               { test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
               { test: /\.(eot|ttf|svg)$/, loader: 'file-loader'},
-              { test: /\.(html)$/, loader: 'html-loader',  options: {attrs:['img:src'/*, 'img:srcset']*/}}
+              { test: /\.(html)$/, loader: 'html-loader',  /*options: {attrs:['img:src', 'img:srcset']}*/}
             ]
         },
         resolve: {
