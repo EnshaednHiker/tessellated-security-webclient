@@ -13,61 +13,62 @@
     </header>
   </div>
   <div class="row">
-      <section class=" section-offset-from-top">
-          <div class="media">
-              <div class="media-body">
-                <p class="lead text-left margin">Tessellated Security is a home security system aimed at the tinkerer, the do-it-yourself-er, the hobbyist. <br><br>By offering an ultra lowcost service, home security is attainable to anyone with wifi internet, a smartphone, and the desire to play around, a little, with a 
-                  <a href="https://www.sparkfun.com/products/13841?ref=tessel.io" target="_blank">tessel 2</a> and a <a href="https://www.sparkfun.com/products/13247" target="_blank">magnetic switch</a>.
-                  <br><br>Simply:
-                </p>                
-              </div>
-            </div>
+      <section id="opening-section" class="section-offset-from-top center">
+        <p class="lead text-justify margin">Tessellated Security is a home security system aimed at the tinkerer, the do-it-yourself-er, the hobbyist. <br><br>By offering an ultra lowcost service, home security is attainable to anyone with wifi internet, a smartphone, and the desire to play around, a little, with a 
+          <a href="https://www.sparkfun.com/products/13841?ref=tessel.io" target="_blank">Tessel 2</a> and a <a href="https://www.sparkfun.com/products/13247" target="_blank">magnetic switch</a>.
+          <br><br>Follow the steps below to make your own home security system.
+        </p>                
       </section>
   </div>
   <div class="row">
-      <section class=" section-offset">
-          
-              <div class="col col-md-2 col-lg-4 col-sm-12 col-xs-12">
-                <p class="lead text-left margin">1. buy <a href="https://www.sparkfun.com/products/13841?ref=tessel.io" target="_blank">this</a></p>                
-              </div>
-              <div class="col col-md-10 col-lg-8 col-sm-12 col-xs-12" target="_blank">
+      <section class="section-offset center">
+              <div class="col col-md-6 col-lg-6 col-sm-6 col-xs-6 " target="_blank">
+                <h2 class="lead text-left margin"><u>Step 1</u> <br> buy <a href="https://www.sparkfun.com/products/13841?ref=tessel.io" target="_blank">this</a></h2>
                   <a href="https://www.sparkfun.com/products/13841?ref=tessel.io" target="_blank">
-                      <img src="../../assets/Tessel_2_Cable_-02.jpg" alt="tessel 2 image" class="media-object img-responsive" >
+                      <img src="../../assets/Tessel_2_Cable_-02.jpg" alt="tessel 2 image" class=" img-responsive img-width center" >
                   </a>
               </div>
-          
+              <div class="col col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                  <h2 class="lead text-left margin"><br>and <a href="https://www.sparkfun.com/products/13247" target="_blank">this</a></h2>
+                  <a href="https://www.sparkfun.com/products/13247" target="_blank">
+                      <img src="../../assets/magnetic_door_switch.jpg" alt="magnetic switch image" class=" img-responsive img-width center" >
+                  </a>
+              </div> 
       </section>
   </div>
   <div class="row">
-      <section class=" section-offset">
-          <div class="col col-md-2 col-lg-4 col-sm-12 col-xs-12">
-              <p class="lead text-left margin">and <a href="https://www.sparkfun.com/products/13247" target="_blank">this</a></p>                
-          </div>
-          <div class="col col-md-10 col-lg-8 col-sm-12 col-xs-12">
-              <a href="https://www.sparkfun.com/products/13247" target="_blank">
-                  <img src="../../assets/magnetic_door_switch.jpg" alt="magnetic switch image" class="media-object img-responsive" >
-              </a>
-          </div>   
+      <section class="section-offset">
+        <div class="col col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <h2 class="lead text-left margin"><u>Step 2</u><br>Set up your Tessel 2 and computer</u></h2>                     
+          <ol id="step-2-list" class="center">
+            <li class="lead list-group-item"><a href="https://tessel.github.io/t2-start/cmd.html" target="_blank">1. Learn about the command-line</a><span class="fa fa-terminal pull-right"></span></li>
+            <li class="lead list-group-item"><a href="https://tessel.github.io/t2-start/index.html" target="_blank">2. Install Node.js and Tessel driver</a><span class="fa fa-code pull-right"></span></li>
+            <li class="lead list-group-item"><a href="https://tessel.github.io/t2-start/wifi.html" target="_blank">3. Set up wifi on the Tessel</a><span class="fa fa-wifi pull-right"></span></li>
+          </ol>
+        </div>
       </section>
   </div>
-  <div class="row">
-      <section class=" section-offset">
-        <p class="lead text-left margin">2. do steps 0 through 2 <a href="https://tessel.github.io/t2-start/" target="_blank">here</a></p>                     
-      </section>
-  </div>
-  <div class="row">
+  <div class="row" id="video-tutorial">
     <section class="section-offset">
-      <p class="lead text-left margin">3. watch this</p>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe id="video-tutorial" class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/IHuYJmVRc1I" frameborder="0" allowfullscreen></iframe>
+      <div class="col col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <h2 class="lead text-left margin"><u>Step 3</u><br>watch this</h2>
+        <div class="center" id="video-width">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe id="video-tutorial" class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/IHuYJmVRc1I" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
       </div>
     </section>
-    <section class="section-offset">
-        <p class="lead text-left margin">4. login or register an account</p>
-    </section>
-    <section class="">
-        <p class="lead text-left margin">5. confused? learn more <a href="#about">here</a></p>
-    </section>
+  </div>
+  <div class="row">
+    <div class="col col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <section class="section-offset">
+          <h2 class="lead text-left margin"><u>Step 4</u><br>login or register an account</h2>
+      </section>
+      <section class="section-offset">
+          <h2 class="lead text-left margin"><u>Step 5</u><br>confused? learn more <a href="#about">here</a></h2>
+      </section>
+    </div>
   </div>
 
   <div class="row" id="input-div-row">

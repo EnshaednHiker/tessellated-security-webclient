@@ -36,9 +36,16 @@
     margin-top: 30vw;
 }
 .section-offset {
-    margin-top: 10vw;
+    margin-top: 3vw;
 }
 
+#opening-section {
+    max-width: 500px;
+}
+.center {
+    margin-right: auto;
+    margin-left: auto;
+}
 
 .primary-text {
     color: #df9f4f !important;
@@ -95,4 +102,16 @@ a.primary-text:hover {
     width: 100%;
     height: auto;
     display: inline-block;
+}
+
+.img-width {
+    max-width: 30vw;
+}
+
+#step-2-list {
+    padding-left: 0;
+    max-width: 500px;
+}
+#video-width {
+    max-width: 500px;
 }
