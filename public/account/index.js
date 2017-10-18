@@ -90,7 +90,7 @@ export default function () {
             .then((res)=>{
                 window.localStorage.removeItem(process.env.TOKEN);
                 channel.publish('logout.successful');
-                window.location.hash='#/login';
+                window.location.hash='#/';
             }); 
 
     });
