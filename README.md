@@ -20,7 +20,7 @@ Watch the video from 0:00 to 2:50 for a comprehensive walkthrough on using the w
 
 ## Video Tutorial and Demo of the the system in action
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RgxG61hzV68" frameborder="0" allowfullscreen></iframe>
+[![tutorial video](http://img.youtube.com/vi/RgxG61hzV68/0.jpg)](http://www.youtube.com/watch?v=RgxG61hzV68 "Tessellated Security Tutorial and Demo (updated website)")
 
 1. 0:00-2:50 shows how to use the website
 2. 2:51-3:40 shows how to assemble the tessel
